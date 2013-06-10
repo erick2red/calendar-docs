@@ -1,0 +1,15 @@
+# Things left to do
+
+## Calendar Views
+
++ Day View
++ List View
+
+
+## Event Creation/Edition
+
++ Reminders
++ Recurring Events
+
+
+## Features
