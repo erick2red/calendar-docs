@@ -16,3 +16,7 @@ Specifications
   3. Units on WeekView will be days
   4. Units on DayView will be hours
   5. WeekView and DayView has equals all-day sections
+
+* *DaysGrid object*
+  1. It's height is divided in 48 cells representing each
+     half-hour of the day
