@@ -39,4 +39,7 @@ Implementation details
      1. objects-added   (wrapping ECalClientView)
      2. objects-removed (wrapping ECalClientView)
      3. events-changed (for time range changing ??)
-  5. oa GtkListStore with calendar/sources info. (not in use now)
+  5. a GtkListStore with calendar/sources info. (not in use now)
+
+* DaysGrid
+  1. API: `gcal_days_grid_mark_hour`: will draw the blue mark of current unit

@@ -17,6 +17,10 @@ Specifications
   4. Units on DayView will be hours
   5. WeekView and DayView has equals all-day sections
 
+* *DayView*
+  1. Will show initially, not just *today* but *tomorrow* as well
+
 * *DaysGrid object*
   1. It's height is divided in 48 cells representing each
      half-hour of the day
+  2. Will have to mark the actual time of day (hour)
