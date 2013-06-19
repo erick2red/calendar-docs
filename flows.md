@@ -13,11 +13,16 @@ Flows
 
 * Clean previous states (**new event creation/search**)
 * API: `gcal_main_view_changed`
-* `GcalView` should update its drawing and children
-* Retrieve new time range from view.
-* Update time range in `GcalManager` (always)
-* Update NavBar headings
 * Update `GcalMainWindow.view_type`
+* call `update_view`
+
+*Update the app date*
+
+* API: `update_view`: update only the active view
+  1. drop every children
+  2. queue resize/redraw if visible
+  3. retrieve/set new time-range (always)
+  4. update NavBar headers
 
 *Create an event*
 
