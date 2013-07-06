@@ -26,20 +26,19 @@ Flows
 
 *Create an event*
 
-* Enter `new-event-mode`.
-* disable toolbar
 * First approach
   1. call `gcal_window_new_event` (from <Ctrl>N or [New Event] button)
   2. set `#GcalWindow:new-event-mode` to TRUE
-  3. call `gcal_view_mark_current_unit`
-  4. call `gcal_window_show_new_event_widget`
-  5. handle outcome of widget
-  6. unset `#GcalWindow:new-event-mode`
+  3. disable toolbar
+  4. call `gcal_view_mark_current_unit`
+  5. call `gcal_view_get_current_position`
 * Second approach:
   1. Receive `#GcalView:create-event` signal
   2. set `#GcalWindow:new-event-mode` to TRUE
-  3. call `gcal_window_show_new_event_widget`
+  3. disable toolbar
+* call `gcal_window_show_new_event_widget`
 * handle outcome of the widget
+* call `gcal_view_clear_marks`
 * unset `#GcalWindow:new-event-mode`
 * enable toolbar
 
