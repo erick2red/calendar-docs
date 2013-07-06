@@ -18,7 +18,8 @@ Specifications
   5. WeekView and DayView has equals all-day sections
 
 * *DayView*
-  1. Will show initially, not just *today* but *tomorrow* as well
+  1. Will show, initially, not just *today* but *tomorrow* as well
+  2. Will create current event in days-grid view (only)
 
 * *DaysGrid object*
   1. It's height is divided in 48 cells representing each
