@@ -44,3 +44,4 @@ Implementation details
 
 * DaysGrid
   1. API: `gcal_days_grid_mark_hour`: will draw the blue mark of current unit
+  2. `scale_width` internal attribute include left and right padding
