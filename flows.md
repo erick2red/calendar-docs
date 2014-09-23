@@ -12,9 +12,9 @@ Flows
 *Showing a view in a window*
 
 * Clean previous states (**new event creation/search**)
-* API: `gcal_main_view_changed`
+* API: `gcal_window_view_changed`
 * Update `GcalMainWindow.view_type`
-* call `update_view`
+* Call `update_view`
 
 *Update the app date*
 

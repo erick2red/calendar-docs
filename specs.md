@@ -16,6 +16,7 @@ Specifications
   3. Units on WeekView will be days
   4. Units on DayView will be hours
   5. WeekView and DayView has equals all-day sections
+  6. The position of the marked cells sent is taken from the center of the starting cell
 
 * *DayView*
   1. Will show, initially, not just *today* but *tomorrow* as well
