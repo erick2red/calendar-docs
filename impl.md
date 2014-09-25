@@ -9,7 +9,7 @@ Implementation details
 	 repaint, nor resize
   4. API: `gcal_view_get_initial_date`
   5. API: `gcal_view_get_final_date`
-  6. API: `gcal_view_draw_event`
+  6. API: `gcal_view_draw_event`: Whether the event within these boundaries will be drawn by the view
   7. API: `gcal_view_get_left_header`
   8. API: `gcal_view_get_right_header`
   9. API: `gcal_view_mark_current_unit`
