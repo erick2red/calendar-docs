@@ -18,3 +18,5 @@ Notes
 
 5. All-day events are those that fall under one of these conditions:
    - Both, start date and end date are marked with is_date
+
+6. `icaltime_as_timet` doesn't include `icaltimetype` timezone. You have to use `icaltime_as_timet_with_zone`
