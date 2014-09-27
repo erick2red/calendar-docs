@@ -3,6 +3,7 @@ Flows
 
 *Starting the application*
 
+* Create `GcalManager` instance
 * Creating a gcal_window
   1. Connect the handlers to `GcalManager` signals
   2. Get the date the app will show either from settings or from the actual view
