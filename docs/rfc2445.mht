@@ -1,0 +1,1050 @@
+From: <Saved by UnMHT Ver.7.2.0>
+Subject: 
+Date: Fri, 26 Sep 2014 13:13:02 -0400
+MIME-Version: 1.0
+X-UnMHT-Save-State: Current-State
+Content-Type: multipart/related;
+	boundary="----=_Part_F8E5F321_C00DC19E.148B2F39C96";
+	type="text/html"
+
+------=_Part_F8E5F321_C00DC19E.148B2F39C96
+Content-Location: https://www.ietf.org/rfc/rfc2445.txt
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset="windows-1252"
+
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html; charset=
+=3Dwindows-1252"><link href=3D"data:image/png;base64,iVBORw0KGgoAAAANSUhEUg=
+AAABAAAAAQCAYAAAAf8/9hAAABaUlEQVQ4jc2Sa0vCUBjH/Vi+6FMIFfRhpJdBLwqp12KGmIaal=
+0zd0m5Kihq1nLemM/J+ydzmnGP/xqRB1JuowD8czuF34Pc852Iw/EXwiyyhQFEUUBQNjuMwGo5Q=
+KjOQpBkqVRbdXv97Ac8L4DkeigqYGgsynsIDVcQ9VYHf50DMuwW/xwa/ew8Pt05IMw6d7kArpgn=
+OTw+QvnAglwogGIwgSVpBREIgoye4IawInxHaTEQ8iIYDKOV9CLh2cZ0ILQScWp0Xpug1KUR92/=
+Ae2xD2WBBy7yCeSKLKsLi8yiCducP4jdNab7VakOfzr3cgSSIe6SeMx68Y9AfqugxZllEolNDpd=
+P/pFUbDoQ5EUUSRpsHzvM5qDIN8LoepesyPPDcaaKhDE+xbLPpGLpvFitEItl7Xmct5hFWTCdxk=
+orONtXUc2u0LARmL6RtsncWm2YxOu62zZvMFoWDwU+t2mw2CICzjV/5p3gGBCE6VnfSfSwAAAAB=
+JRU5ErkJggg=3D=3D" rel=3D"shortcut icon" type=3D"image/png"><link href=3D"r=
+esource://gre-resources/plaintext.css" rel=3D"alternate stylesheet" title=
+=3D"Wrap Long Lines" type=3D"text/css"><base href=3D"https://www.ietf.org/r=
+fc/"></head><body><pre>
+
+
+
+
+
+Network Working Group                                         F. Dawson
+Request for Comments: 2445                                        Lotus
+Category: Standards Track                                  D. Stenerson
+                                                              Microsoft
+                                                          November 1998
+
+
+     Internet Calendaring and Scheduling Core Object Specification
+                              (iCalendar)
+
+Status of this Memo
+
+   This document specifies an Internet standards track protocol for the
+   Internet community, and requests discussion and suggestions for
+   improvements.  Please refer to the current edition of the &quot;Internet
+   Official Protocol Standards&quot; (STD 1) for the standardization state
+   and status of this protocol.  Distribution of this memo is unlimited.
+
+Copyright Notice
+
+   Copyright (C) The Internet Society (1998).  All Rights Reserved.
+
+Abstract
+
+   There is a clear need to provide and deploy interoperable calendaring
+   and scheduling services for the Internet. Current group scheduling
+   and Personal Information Management (PIM) products are being extended
+   for use across the Internet, today, in proprietary ways. This memo
+   has been defined to provide the definition of a common format for
+   openly exchanging calendaring and scheduling information across the
+   Internet.
+
+   This memo is formatted as a registration for a MIME media type per
+   [RFC 2048]. However, the format in this memo is equally applicable
+   for use outside of a MIME message content type.
+
+   The proposed media type value is &#x27;text/calendar&#x27;. This string =
+would
+   label a media type containing calendaring and scheduling information
+   encoded as text characters formatted in a manner outlined below.
+
+   This MIME media type provides a standard content type for capturing
+   calendar event, to-do and journal entry information. It also can be
+   used to convey free/busy time information. The content type is
+   suitable as a MIME message entity that can be transferred over MIME
+   based email systems, using HTTP or some other Internet transport. In
+
+
+
+
+
+
+Dawson &amp; Stenerson          Standards Track                     [Page 1]
+=0C
+RFC 2445                       iCalendar                   November 1998
+
+
+   addition, the content type is useful as an object for interactions
+   between desktop applications using the operating system clipboard,
+   drag/drop or file systems capabilities.
+
+   This memo is based on the earlier work of the vCalendar specification
+   for the exchange of personal calendaring and scheduling information.
+   In order to avoid confusion with this referenced work, this memo is
+   to be known as the iCalendar specification.
+
+   This memo defines the format for specifying iCalendar object methods.
+   An iCalendar object method is a set of usage constraints for the
+   iCalendar object. For example, these methods might define scheduling
+   messages that request an event be scheduled, reply to an event
+   request, send a cancellation notice for an event, modify or replace
+   the definition of an event, provide a counter proposal for an
+   original event request, delegate an event request to another
+   individual, request free or busy time, reply to a free or busy time
+   request, or provide similar scheduling messages for a to-do or
+   journal entry calendar component. The iCalendar Transport-indendent
+   Interoperability Protocol (iTIP) defined in [ITIP] is one such
+   scheduling protocol.
+
+Table of Contents
+
+   1 Introduction.....................................................5
+   2 Basic Grammar and Conventions....................................6
+    2.1 Formatting Conventions .......................................7
+    2.2 Related Memos ................................................8
+    2.3 International Considerations .................................8
+   3 Registration Information.........................................8
+    3.1 Content Type .................................................8
+    3.2 Parameters ...................................................9
+    3.3 Content Header Fields .......................................10
+    3.4 Encoding Considerations .....................................10
+    3.5 Security Considerations .....................................10
+    3.6 Interoperability Considerations .............................11
+    3.7 Applications Which Use This Media Type ......................11
+    3.8 Additional Information ......................................11
+    3.9 Magic Numbers ...............................................11
+    3.10 File Extensions ............................................11
+    3.11 Contact for Further Information: ...........................12
+    3.12 Intended Usage .............................................12
+    3.13 Authors/Change Controllers .................................12
+   4 iCalendar Object Specification..................................13
+    4.1 Content Lines ...............................................13
+     4.1.1 List and Field Separators ................................16
+     4.1.2 Multiple Values ..........................................16
+     4.1.3 Binary Content ...........................................16
+
+
+
+Dawson &amp; Stenerson          Standards Track                     [Page 2]
+=0C
+RFC 2445                       iCalendar                   November 1998
+
+
+     4.1.4 Character Set ............................................17
+    4.2 Property Parameters .........................................17
+     4.2.1 Alternate Text Representation ............................18
+     4.2.2 Common Name ..............................................19
+     4.2.3 Calendar User Type .......................................20
+     4.2.4 Delegators ...............................................20
+     4.2.5 Delegatees ...............................................21
+     4.2.6 Directory Entry Reference ................................21
+     4.2.7 Inline Encoding ..........................................22
+     4.2.8 Format Type ..............................................23
+     4.2.9 Free/Busy Time Type ......................................23
+     4.2.10 Language ................................................24
+     4.2.11 Group or List Membership ................................25
+     4.2.12 Participation Status ....................................25
+     4.2.13 Recurrence Identifier Range .............................27
+     4.2.14 Alarm Trigger Relationship ..............................27
+     4.2.15 Relationship Type .......................................28
+     4.2.16 Participation Role ......................................29
+     4.2.17 RSVP Expectation ........................................29
+     4.2.18 Sent By .................................................30
+     4.2.19 Time Zone Identifier ....................................30
+     4.2.20 Value Data Types ........................................32
+    4.3 Property Value Data Types ...................................32
+     4.3.1 Binary ...................................................33
+     4.3.2 Boolean ..................................................33
+     4.3.3 Calendar User Address ....................................34
+     4.3.4 Date .....................................................34
+     4.3.5 Date-Time ................................................35
+     4.3.6 Duration .................................................37
+     4.3.7 Float ....................................................38
+     4.3.8 Integer ..................................................38
+     4.3.9 Period of Time ...........................................39
+     4.3.10 Recurrence Rule .........................................40
+     4.3.11 Text ....................................................45
+     4.3.12 Time ....................................................47
+     4.3.13 URI .....................................................49
+     4.3.14 UTC Offset ..............................................49
+    4.4 iCalendar Object ............................................50
+    4.5 Property ....................................................51
+    4.6 Calendar Components .........................................51
+     4.6.1 Event Component ..........................................52
+     4.6.2 To-do Component ..........................................55
+     4.6.3 Journal Component ........................................56
+     4.6.4 Free/Busy Component ......................................58
+     4.6.5 Time Zone Component ......................................60
+     4.6.6 Alarm Component ..........................................67
+    4.7 Calendar Properties .........................................73
+     4.7.1 Calendar Scale ...........................................73
+
+
+
+Dawson &amp; Stenerson          Standards Track                     [Page 3]
+=0C
+RFC 2445                       iCalendar                   November 1998
+
+
+     4.7.2 Method ...................................................74
+     4.7.3 Product Identifier .......................................75
+     4.7.4 Version ..................................................76
+    4.8 Component Properties ........................................77
+     4.8.1 Descriptive Component Properties .........................77
+       4.8.1.1 Attachment ...........................................77
+       4.8.1.2 Categories ...........................................78
+       4.8.1.3 Classification .......................................79
+       4.8.1.4 Comment ..............................................80
+       4.8.1.5 Description ..........................................81
+       4.8.1.6 Geographic Position ..................................82
+       4.8.1.7 Location .............................................84
+       4.8.1.8 Percent Complete .....................................85
+       4.8.1.9 Priority .............................................85
+       4.8.1.10 Resources ...........................................87
+       4.8.1.11 Status ..............................................88
+       4.8.1.12 Summary .............................................89
+     4.8.2 Date and Time Component Properties .......................90
+       4.8.2.1 Date/Time Completed ..................................90
+       4.8.2.2 Date/Time End ........................................91
+       4.8.2.3 Date/Time Due ........................................92
+       4.8.2.4 Date/Time Start ......................................93
+       4.8.2.5 Duration .............................................94
+       4.8.2.6 Free/Busy Time .......................................95
+       4.8.2.7 Time Transparency ....................................96
+     4.8.3 Time Zone Component Properties ...........................97
+       4.8.3.1 Time Zone Identifier .................................97
+       4.8.3.2 Time Zone Name .......................................98
+       4.8.3.3 Time Zone Offset From ................................99
+       4.8.3.4 Time Zone Offset To .................................100
+       4.8.3.5 Time Zone URL .......................................101
+     4.8.4 Relationship Component Properties .......................102
+       4.8.4.1 Attendee ............................................102
+       4.8.4.2 Contact .............................................104
+       4.8.4.3 Organizer ...........................................106
+       4.8.4.4 Recurrence ID .......................................107
+       4.8.4.5 Related To ..........................................109
+       4.8.4.6 Uniform Resource Locator ............................110
+       4.8.4.7 Unique Identifier ...................................111
+     4.8.5 Recurrence Component Properties .........................112
+       4.8.5.1 Exception Date/Times ................................112
+       4.8.5.2 Exception Rule ......................................114
+       4.8.5.3 Recurrence Date/Times ...............................115
+       4.8.5.4 Recurrence Rule .....................................117
+     4.8.6 Alarm Component Properties ..............................126
+       4.8.6.1 Action ..............................................126
+       4.8.6.2 Repeat Count ........................................126
+       4.8.6.3 Trigger .............................................127
+
+
+
+Dawson &amp; Stenerson          Standards Track                     [Page 4]
+=0C
+RFC 2445                       iCalendar                   November 1998
+
+
+     4.8.7 Change Management Component Properties ..................129
+       4.8.7.1 Date/Time Created ...................................129
+       4.8.7.2 Date/Time Stamp .....................................130
+       4.8.7.3 Last Modified .......................................131
+       4.8.7.4 Sequence Number .....................................131
+     4.8.8 Miscellaneous Component Properties ......................133
+       4.8.8.1 Non-standard Properties .............................133
+       4.8.8.2 Request Status ......................................134
+   5 iCalendar Object Examples......................................136
+   6 Recommended Practices..........................................140
+   7 Registration of Content Type Elements..........................141
+    7.1 Registration of New and Modified iCalendar Object Methods ..141
+    7.2 Registration of New Properties .............................141
+     7.2.1 Define the property .....................................142
+     7.2.2 Post the Property definition ............................143
+     7.2.3 Allow a comment period ..................................143
+     7.2.4 Submit the property for approval ........................143
+    7.3 Property Change Control ....................................143
+   8 References.....................................................144
+   9 Acknowledgments................................................145
+   10 Authors&#x27; and Chairs&#x27; Addresses.............................=
+...146
+   11 Full Copyright Statement......................................148
+
+1 Introduction
+
+   The use of calendaring and scheduling has grown considerably in the
+   last decade. Enterprise and inter-enterprise business has become
+   dependent on rapid scheduling of events and actions using this
+   information technology. However, the longer term growth of
+   calendaring and scheduling, is currently limited by the lack of
+   Internet standards for the message content types that are central to
+   these knowledgeware applications. This memo is intended to progress
+   the level of interoperability possible between dissimilar calendaring
+   and scheduling applications. This memo defines a MIME content type
+   for exchanging electronic calendaring and scheduling information. The
+   Internet Calendaring and Scheduling Core Object Specification, or
+   iCalendar, allows for the capture and exchange of information
+   normally stored within a calendaring and scheduling application; such
+   as a Personal Information Manager (PIM) or a Group Scheduling
+   product.
+
+   The iCalendar format is suitable as an exchange format between
+   applications or systems. The format is defined in terms of a MIME
+   content type. This will enable the object to be exchanged using
+   several transports, including but not limited to SMTP, HTTP, a file
+   system, desktop interactive protocols such as the use of a memory-
+   based clipboard or drag/drop interactions, point-to-point
+   asynchronous communication, wired-network transport, or some form of
+
+
+
+Dawson &amp; Stenerson          Standards Track                     [Page 5]
+=0C
+RFC 2445                       iCalendar                   November 1998
+
+
+   unwired transport such as infrared might also be used.
+
+   The memo also provides for the definition of iCalendar object methods
+   that will map this content type to a set of messages for supporting
+   calendaring and scheduling operations such as requesting, replying
+   to, modifying, and canceling meetings or appointments, to-dos and
+   journal entries. The iCalendar object methods can be used to define
+   other calendaring and scheduling operations such a requesting for and
+   replying with free/busy time data. Such a scheduling protocol is
+   defined in the iCalendar Transport-independent Interoperability
+   Protocol (iTIP) defined in [ITIP].
+
+   The memo also includes a formal grammar for the content type based on
+   the Internet ABNF defined in [RFC 2234]. This ABNF is required for
+   the implementation of parsers and to serve as the definitive
+   reference when ambiguities or questions arise in interpreting the
+   descriptive prose definition of the memo.
+
+2 Basic Grammar and Conventions
+
+   The key words &quot;MUST&quot;, &quot;MUST NOT&quot;, &quot;REQUIRED&quo=
+t;, &quot;SHALL&quot;, &quot;SHALL NOT&quot;,
+   &quot;SHOULD&quot;, &quot;SHOULD NOT&quot;, &quot;RECOMMENDED&quot;, &qu=
+ot;NOT RECOMMENDED&quot;, &quot;MAY&quot; and
+   &quot;OPTIONAL&quot; in this document are to be interoperated as describ=
+ed in
+   [RFC 2119].
+
+   This memo makes use of both a descriptive prose and a more formal
+   notation for defining the calendaring and scheduling format.
+
+   The notation used in this memo is the ABNF notation of [RFC 2234].
+   Readers intending on implementing this format defined in this memo
+   should be familiar with this notation in order to properly interpret
+   the specifications of this memo.
+
+   All numeric and hexadecimal values used in this memo are given in
+   decimal notation.
+
+   All names of properties, property parameters, enumerated property
+   values and property parameter values are case-insensitive. However,
+   all other property values are case-sensitive, unless otherwise
+   stated.
+
+        Note: All indented editorial notes, such as this one, are
+        intended to provide the reader with additional information. The
+        information is not essential to the building of an
+        implementation conformant with this memo. The information is
+        provided to highlight a particular feature or characteristic of
+        the memo.
+
+
+
+
+Dawson &amp; Stenerson          Standards Track                     [Page 6]
+=0C
+RFC 2445                       iCalendar                   November 1998
+
+
+   The format for the iCalendar object is based on the syntax of the
+   [RFC 2425] content type. While the iCalendar object is not a profile
+   of the [RFC 2425] content type, it does reuse a number of the
+   elements from the [RFC 2425] specification.
+
+2.1 Formatting Conventions
+
+   The mechanisms defined in this memo are defined in prose. Many of the
+   terms used to describe these have common usage that is different than
+   the standards usage of this memo. In order to reference within this
+   memo elements of the calendaring and scheduling model, core object
+   (this memo) or interoperability protocol [ITIP] some formatting
+   conventions have been used. Calendaring and scheduling roles are
+   referred to in quoted-strings of text with the first character of
+   each word in upper case. For example, &quot;Organizer&quot; refers to a =
+role of
+   a &quot;Calendar User&quot; within the scheduling protocol defined by [I=
+TIP].
+   Calendar components defined by this memo are referred to with
+   capitalized, quoted-strings of text. All calendar components start
+   with the letter &quot;V&quot;. For example, &quot;VEVENT&quot; refers to=
+ the event
+   calendar component, &quot;VTODO&quot; refers to the to-do calendar compo=
+nent
+   and &quot;VJOURNAL&quot; refers to the daily journal calendar component.
+   Scheduling methods defined by [ITIP] are referred to with
+   capitalized, quoted-strings of text. For example, &quot;REQUEST&quot; re=
+fers to
+   the method for requesting a scheduling calendar component be created
+   or modified, &quot;REPLY&quot; refers to the method a recipient of a req=
+uest
+   uses to update their status with the &quot;Organizer&quot; of the calend=
+ar
+   component.
+
+   The properties defined by this memo are referred to with capitalized,
+   quoted-strings of text, followed by the word &quot;property&quot;. For e=
+xample,
+   &quot;ATTENDEE&quot; property refers to the iCalendar property used to c=
+onvey
+   the calendar address of a calendar user. Property parameters defined
+   by this memo are referred to with lowercase, quoted-strings of text,
+   followed by the word &quot;parameter&quot;. For example, &quot;value&quo=
+t; parameter
+   refers to the iCalendar property parameter used to override the
+   default data type for a property value. Enumerated values defined by
+   this memo are referred to with capitalized text, either alone or
+   followed by the word &quot;value&quot;. For example, the &quot;MINUTELY&=
+quot; value can
+   be used with the &quot;FREQ&quot; component of the &quot;RECUR&quot; dat=
+a type to specify
+   repeating components based on an interval of one minute or more.
+
+
+
+
+
+
+
+
+
+
+
+Dawson &amp; Stenerson          Standards Track                     [Page 7]
+=0C
+RFC 2445                       iCalendar                   November 1998
+
+
+2.2 Related Memos
+
+   Implementers will need to be familiar with several other memos that,
+   along with this memo, form a framework for Internet calendaring and
+   scheduling standards. This memo, [ICAL], specifies a core
+   specification of objects, data types, properties and property
+   parameters.
+
+   [ITIP] - specifies an interoperability protocol for scheduling
+   between different implementations;
+
+   [IMIP] specifies an Internet email binding for [ITIP].
+
+   This memo does not attempt to repeat the specification of concepts or
+   definitions from these other memos. Where possible, references are
+   made to the memo that provides for the specification of these
+   concepts or definitions.
+
+2.3 International Considerations
+
+   In the rest of this document, descriptions of characters are of the
+   form &quot;character name (codepoint)&quot;, where &quot;codepoint&quot;=
+ is from the US-
+   ASCII character set. The &quot;character name&quot; is the authoritative
+   description; (codepoint) is a reference to that character in US-ASCII
+   or US-ASCII compatible sets (for example the ISO-8859-x family, UTF-
+   8, ISO-2022-xx, KOI8-R). If a non-US-ASCII compatible character set
+   is used, appropriate code-point from that character set MUST be
+   chosen instead. Use of non-US-ASCII-compatible character sets is NOT
+   recommended.
+
+3  Registration Information
+
+   The Calendaring and Scheduling Core Object Specification is intended
+   for use as a MIME content type. However, the implementation of the
+   memo is in no way limited solely as a MIME content type.
+
+3.1 Content Type
+
+   The following text is intended to register this memo as the MIME
+   content type &quot;text/calendar&quot;.
+
+     To: ietf-types@uninett.no
+
+     Subject: Registration of MIME content type text/calendar.
+
+     MIME media type name: text
+
+     MIME subtype name: calendar
+
+
+
+Dawson &amp; Stenerson          Standards Track                     [Page 8]
+=0C
+RFC 2445                       iCalendar                   November 1998
+
+
+3.2 Parameters
+
+   Required parameters: none
+
+   Optional parameters: charset, method, component and optinfo
+
+   The &quot;charset&quot; parameter is defined in [RFC 2046] for other body
+   parts. It is used to identify the default character set used within
+   the body part.
+
+   The &quot;method&quot; parameter is used to convey the iCalendar object =
+method
+   or transaction semantics for the calendaring and scheduling
+   information. It also is an identifier for the restricted set of
+   properties and values that the iCalendar object consists of. The
+   parameter is to be used as a guide for applications interpreting the
+   information contained within the body part. It SHOULD NOT be used to
+   exclude or require particular pieces of information unless the
+   identified method definition specifically calls for this behavior.
+   Unless specifically forbidden by a particular method definition, a
+   text/calendar content type can contain any set of properties
+   permitted by the Calendaring and Scheduling Core Object
+   Specification. The &quot;method&quot; parameter MUST be the same value a=
+s that
+   specified in the &quot;METHOD&quot; component property in the iCalendar =
+object.
+   If one is present, the other MUST also be present.
+
+   The value for the &quot;method&quot; parameter is defined as follows:
+
+        method  =3D 1*(ALPHA / DIGIT / &quot;-&quot;)
+        ; IANA registered iCalendar object method
+
+   The &quot;component&quot; parameter conveys the type of iCalendar calend=
+ar
+   component within the body part. If the iCalendar object contains more
+   than one calendar component type, then multiple component parameters
+   MUST be specified.
+
+   The value for the &quot;component&quot; parameter is defined as follows:
+
+        component       =3D (&quot;VEVENT&quot; / &quot;VTODO&quot; / &quot=
+;VJOURNAL&quot; / &quot;VFREEBUSY&quot;
+                        / &quot;VTIMEZONE&quot; / x-name / iana-token)
+
+   The &quot;optinfo&quot; parameter conveys optional information about the
+   iCalendar object within the body part. This parameter can only
+   specify semantics already specified by the iCalendar object and that
+   can be otherwise determined by parsing the body part. In addition,
+   the optional information specified by this parameter MUST be
+   consistent with that information specified by the iCalendar object.
+   For example, it can be used to convey the &quot;Attendee&quot; response =
+status
+   to a meeting request. The parameter value consists of a string value.
+
+
+
+Dawson &amp; Stenerson          Standards Track                     [Page 9]
+=0C
+RFC 2445                       iCalendar                   November 1998
+
+
+   The parameter can be specified multiple times.
+
+   This parameter MAY only specify semantics already specified by the
+   iCalendar object and that can be otherwise determined by parsing the
+   body part.
+
+   The value for the &quot;optinfo&quot; parameter is defined as follows:
+
+        optinfo =3D infovalue / qinfovalue
+
+        infovalue       =3D iana-token / x-name
+
+        qinfovalue      =3D DQUOTE (infovalue) DQUOTE
+
+3.3 Content Header Fields
+
+   Optional content header fields: Any header fields defined by [RFC
+   2045].
+
+3.4 Encoding Considerations
+
+   This MIME content type can contain 8bit characters, so the use of
+   quoted-printable or BASE64 MIME content-transfer-encodings might be
+   necessary when iCalendar objects are transferred across protocols
+   restricted to the 7bit repertoire. Note that a text valued property
+   in the content entity can also have content encoding of special
+   characters using a BACKSLASH character (US-ASCII decimal 92)
+   escapement technique. This means that content values can end up
+   encoded twice.
+
+3.5 Security Considerations
+
+   SPOOFING - - In this memo, the &quot;Organizer&quot; is the only person
+   authorized to make changes to an existing &quot;VEVENT&quot;, &quot;VTOD=
+O&quot;,
+   &quot;VJOURNAL&quot; calendar component and redistribute the updates to =
+the
+   &quot;Attendees&quot;. An iCalendar object that maliciously changes or c=
+ancels
+   an existing &quot;VEVENT&quot;, &quot;VTODO&quot; or &quot;VJOURNAL&quot=
+; or &quot;VFREEBUSY&quot; calendar
+   component might be constructed by someone other than the &quot;Organizer=
+&quot;
+   and sent to the &quot;Attendees&quot;. In addition in this memo, other t=
+han the
+   &quot;Organizer&quot;, an &quot;Attendee&quot; of a &quot;VEVENT&quot;, =
+&quot;VTODO&quot;, &quot;VJOURNAL&quot;
+   calendar component is the only other person authorized to update any
+   parameter associated with their &quot;ATTENDEE&quot; property and send i=
+t to
+   the &quot;Organizer&quot;. An iCalendar object that maliciously changes =
+the
+   &quot;ATTENDEE&quot; parameters can be constructed by someone other than=
+ the
+   real &quot;Attendee&quot; and sent to the &quot;Organizer&quot;.
+
+
+
+
+
+
+Dawson &amp; Stenerson          Standards Track                    [Page 10]
+=0C
+RFC 2445                       iCalendar                   November 1998
+
+
+   PROCEDURAL ALARMS - - An iCalendar object can be created that
+   contains a &quot;VEVENT&quot; and &quot;VTODO&quot; calendar component w=
+ith &quot;VALARM&quot;
+   calendar components. The &quot;VALARM&quot; calendar component can be of=
+ type
+   PROCEDURE and can have an attachment containing some sort of
+   executable program. Implementations that incorporate these types of
+   alarms are subject to any virus or malicious attack that might occur
+   as a result of executing the attachment.
+
+   ATTACHMENTS - - An iCalendar object can include references to Uniform
+   Resource Locators that can be programmed resources.
+
+   Implementers and users of this memo should be aware of the network
+   security implications of accepting and parsing such information. In
+   addition, the security considerations observed by implementations of
+   electronic mail systems should be followed for this memo.
+
+3.6 Interoperability Considerations
+
+   This MIME content type is intended to define a common format for
+   conveying calendaring and scheduling information between different
+   systems. It is heavily based on the earlier [VCAL] industry
+   specification.
+
+3.7 Applications Which Use This Media Type
+
+   This content-type is designed for widespread use by Internet
+   calendaring and scheduling applications. In addition, applications in
+   the workflow and document management area might find this content-
+   type applicable. The [ITIP] and [IMIP] Internet protocols directly
+   use this content-type also. Future work on an Internet calendar
+   access protocol will utilize this content-type too.
+
+3.8 Additional Information
+
+   This memo defines this content-type.
+
+3.9 Magic Numbers
+
+   None.
+
+3.10 File Extensions
+
+   The file extension of &quot;ics&quot; is to be used to designate a file
+   containing (an arbitrary set of) calendaring and scheduling
+   information consistent with this MIME content type.
+
+
+
+
+
+
+Dawson &amp; Stenerson          Standards Track                    [Page 11]
+=0C
+RFC 2445                       iCalendar                   November 1998
+
+
+   The file extension of &quot;ifb&quot; is to be used to designate a file
+   containing free or busy time information consistent with this MIME
+   content type.
+
+   Macintosh file type codes: The file type code of &quot;iCal&quot; is to =
+be used
+   in Apple MacIntosh operating system environments to designate a file
+   containing calendaring and scheduling information consistent with
+   this MIME media type.
+
+   The file type code of &quot;iFBf&quot; is to be used in Apple MacIntosh
+   operating system environments to designate a file containing free or
+   busy time information consistent with this MIME media type.
+
+3.11 Contact for Further Information:
+
+   Frank Dawson
+   6544 Battleford Drive
+   Raleigh, NC 27613-3502
+   919-676-9515 (Telephone)
+   919-676-9564 (Data/Facsimile)
+   Frank_Dawson@Lotus.com (Internet Mail)
+
+   Derik Stenerson
+   One Microsoft Way
+   Redmond, WA  98052-6399
+   425-936-5522 (Telephone)
+   425-936-7329 (Facsimile)
+   deriks@microsoft.com (Internet Mail)
+
+3.12 Intended Usage
+
+   COMMON
+
+3.13 Authors/Change Controllers
+
+   Frank Dawson
+   6544 Battleford Drive
+   Raleigh, NC 27613-3502
+   919-676-9515 (Telephone)
+   919-676-9564 (Data/Facsimile)
+   Frank_Dawson@Lotus.com (Internet Mail)
+
+   Derik Stenerson
+   One Microsoft Way
+   Redmond, WA  98052-6399
+   425-936-5522 (Telephone)
+   425-936-7329 (Facsimile)
+   deriks@microsoft.com (Internet Mail)
+
+
+
+Dawson &amp; Stenerson          Standards Track                    [Page 12]
+=0C
+RFC 2445                       iCalendar                   November 1998
+
+
+4 iCalendar Object Specification
+
+   The following sections define the details of a Calendaring and
+   Scheduling Core Object Specification. This information is intended to
+   be an integral part of the MIME content type registration. In
+   addition, this information can be used independent of such content
+   registration. In particular, this memo has direct applicability for
+   use as a calendaring and scheduling exchange format in file-, memory-
+   or network-based transport mechanisms.
+
+4.1 Content Lines
+
+   The iCalendar object is organized into individual lines of text,
+   called content lines. Content lines are delimited by a line break,
+   which is a CRLF sequence (US-ASCII decimal 13, followed by US-ASCII
+   decimal 10).
+
+   Lines of text SHOULD NOT be longer than 75 octets, excluding the line
+   break. Long content lines SHOULD be split into a multiple line
+   representations using a line &quot;folding&quot; technique. That is, a l=
+ong
+   line can be split between any two characters by inserting a CRLF
+   immediately followed by a single linear white space character (i.e.,
+   SPACE, US-ASCII decimal 32 or HTAB, US-ASCII decimal 9). Any sequence
+   of CRLF followed immediately by a single linear white space character
+   is ignored (i.e., removed) when processing the content type.
+
+   For example the line:
+
+     DESCRIPTION:This is a long description that exists on a long line.
+
+   Can be represented as:
+
+     DESCRIPTION:This is a lo
+      ng description
+       that exists on a long line.
+
+   The process of moving from this folded multiple line representation
+   to its single line representation is called &quot;unfolding&quot;. Unfol=
+ding is
+   accomplished by removing the CRLF character and the linear white
+   space character that immediately follows.
+
+   When parsing a content line, folded lines MUST first be unfolded
+   according to the unfolding procedure described above. When generating
+   a content line, lines longer than 75 octets SHOULD be folded
+   according to the folding procedure described above.
+
+
+
+
+
+
+Dawson &amp; Stenerson          Standards Track                    [Page 13]
+=0C
+RFC 2445                       iCalendar                   November 1998
+
+
+   The content information associated with an iCalendar object is
+   formatted using a syntax similar to that defined by [RFC 2425]. That
+   is, the content information consists of CRLF-separated content lines.
+
+   The following notation defines the lines of content in an iCalendar
+   object:
+
+     contentline        =3D name *(&quot;;&quot; param ) &quot;:&quot; valu=
+e CRLF
+        ; This ABNF is just a general definition for an initial parsing
+        ; of the content line into its property name, parameter list,
+        ; and value string
+
+     ; When parsing a content line, folded lines MUST first
+        ; be unfolded according to the unfolding procedure
+        ; described above. When generating a content line, lines
+        ; longer than 75 octets SHOULD be folded according to
+        ; the folding procedure described above.
+
+     name               =3D x-name / iana-token
+
+     iana-token =3D 1*(ALPHA / DIGIT / &quot;-&quot;)
+     ; iCalendar identifier registered with IANA
+
+     x-name             =3D &quot;X-&quot; [vendorid &quot;-&quot;] 1*(ALPH=
+A / DIGIT / &quot;-&quot;)
+     ; Reservered for experimental use. Not intended for use in
+     ; released products.
+
+     vendorid   =3D 3*(ALPHA / DIGIT)     ;Vendor identification
+
+     param              =3D param-name &quot;=3D&quot; param-value
+                          *(&quot;,&quot; param-value)
+        ; Each property defines the specific ABNF for the parameters
+        ; allowed on the property. Refer to specific properties for
+        ; precise parameter ABNF.
+
+     param-name =3D iana-token / x-token
+
+     param-value        =3D paramtext / quoted-string
+
+     paramtext  =3D *SAFE-CHAR
+
+     value      =3D *VALUE-CHAR
+
+     quoted-string      =3D DQUOTE *QSAFE-CHAR DQUOTE
+
+     NON-US-ASCII       =3D %x80-F8
+     ; Use restricted by charset parameter
+     ; on outer MIME object (UTF-8 preferred)
+
+
+
+Dawson &amp; Stenerson          Standards Track                    [Page 14]
+=0C
+RFC 2445                       iCalendar                   November 1998
+
+
+     QSAFE-CHAR =3D WSP / %x21 / %x23-7E / NON-US-ASCII
+     ; Any character except CTLs and DQUOTE
+
+     SAFE-CHAR  =3D WSP / %x21 / %x23-2B / %x2D-39 / %x3C-7E
+                / NON-US-ASCII
+     ; Any character except CTLs, DQUOTE, &quot;;&quot;, &quot;:&quot;, &qu=
+ot;,&quot;
+
+     VALUE-CHAR =3D WSP / %x21-7E / NON-US-ASCII
+     ; Any textual character
+
+     CR =3D %x0D
+     ; carriage return
+
+     LF =3D %x0A
+     ; line feed
+
+     CRLF       =3D CR LF
+     ; Internet standard newline
+
+     CTL        =3D %x00-08 / %x0A-1F / %x7F
+        ; Controls
+
+     ALPHA      =3D %x41-5A / %x61-7A   ; A-Z / a-z
+
+     DIGIT      =3D %x30-39
+        ; 0-9
+
+     DQUOTE     =3D %x22
+        ; Quotation Mark
+
+     WSP        =3D SPACE / HTAB
+
+     SPACE      =3D %x20
+
+     HTAB       =3D %x09
+
+   The property value component of a content line has a format that is
+   property specific. Refer to the section describing each property for
+   a definition of this format.
+
+   All names of properties, property parameters, enumerated property
+   values and property parameter values are case-insensitive. However,
+   all other property values are case-sensitive, unless otherwise
+   stated.
+
+
+
+
+
+
+
+Dawson &amp; Stenerson          Standards Track                    [Page 15]
+=0C
+RFC 2445                       iCalendar                   November 1998
+
+
+4.1.1 List and Field Separators
+
+   Some properties and parameters allow a list of values. Values in a
+   list of values MUST be separated by a COMMA character (US-ASCII
+   decimal 44). There is no significance to the order of values in a
+   list. For those parameter values (such as those that specify URI
+   values) that are specified in quoted-strings, the individual quoted-
+   strings are separated by a COMMA character (US-ASCII decimal 44).
+
+   Some property values are defined in terms of multiple parts. These
+   structured property values MUST have their value parts separated by a
+   SEMICOLON character (US-ASCII decimal 59).
+
+   Some properties allow a list of parameters. Each property parameter
+   in a list of property parameters MUST be separated by a SEMICOLON
+   character (US-ASCII decimal 59).
+
+   Property parameters with values containing a COLON, a SEMICOLON or a
+   COMMA character MUST be placed in quoted text.
+
+   For example, in the following properties a SEMICOLON is used to
+   separate property parameters from each other, and a COMMA is used to
+   separate property values in a value list.
+
+     ATTENDEE;RSVP=3DTRUE;ROLE=3DREQ-PARTICIPANT:MAILTO:
+      jsmith@host.com
+
+     RDATE;VALUE=3DDATE:19970304,19970504,19970704,19970904
+
+4.1.2 Multiple Values
+
+   Some properties defined in the iCalendar object can have multiple
+   values. The general rule for encoding multi-valued items is to simply
+   create a new content line for each value, including the property
+   name. However, it should be noted that some properties support
+   encoding multiple values in a single property by separating the
+   values with a COMMA character (US-ASCII decimal 44). Individual
+   property definitions should be consulted for determining whether a
+   specific property allows multiple values and in which of these two
+   forms.
+
+4.1.3 Binary Content
+
+   Binary content information in an iCalendar object SHOULD be
+   referenced using a URI within a property value. That is the binary
+   content information SHOULD be placed in an external MIME entity that
+   can be referenced by a URI from within the iCalendar object. In
+   applications where this is not feasible, binary content information
+
+
+
+Dawson &amp; Stenerson          Standards Track                    [Page 16]
+=0C
+RFC 2445                       iCalendar                   November 1998
+
+
+   can be included within an iCalendar object, but only after first
+   encoding it into text using the &quot;BASE64&quot; encoding method defin=
+ed in
+   [RFC 2045]. Inline binary contact SHOULD only be used in applications
+   whose special circumstances demand that an iCalendar object be
+   expressed as a single entity. A property containing inline binary
+   content information MUST specify the &quot;ENCODING&quot; property param=
+eter.
+   Binary content information placed external to the iCalendar object
+   MUST be referenced by a uniform resource identifier (URI).
+
+   The following example specifies an &quot;ATTACH&quot; property that refe=
+rences
+   an attachment external to the iCalendar object with a URI reference:
+
+     ATTACH:http://xyz.com/public/quarterly-report.doc
+
+   The following example specifies an &quot;ATTACH&quot; property with inli=
+ne
+   binary encoded content information:
+
+     ATTACH;FMTTYPE=3Dimage/basic;ENCODING=3DBASE64;VALUE=3DBINARY:
+      MIICajCCAdOgAwIBAgICBEUwDQYJKoZIhvcNAQEEBQAwdzELMAkGA1U
+      EBhMCVVMxLDAqBgNVBAoTI05ldHNjYXBlIENvbW11bmljYXRpb25zIE
+        &lt;...remainder of &quot;BASE64&quot; encoded binary data...&gt;
+
+4.1.4 Character Set
+
+   There is not a property parameter to declare the character set used
+   in a property value. The default character set for an iCalendar
+   object is UTF-8 as defined in [RFC 2279].
+
+   The &quot;charset&quot; Content-Type parameter can be used in MIME trans=
+ports
+   to specify any other IANA registered character set.
+
+4.2 Property Parameters
+
+   A property can have attributes associated with it. These &quot;property
+   parameters&quot; contain meta-information about the property or the
+   property value. Property parameters are provided to specify such
+   information as the location of an alternate text representation for a
+   property value, the language of a text property value, the data type
+   of the property value and other attributes.
+
+   Property parameter values that contain the COLON (US-ASCII decimal
+   58), SEMICOLON (US-ASCII decimal 59) or COMMA (US-ASCII decimal 44)
+   character separators MUST be specified as quoted-string text values.
+   Property parameter values MUST NOT contain the DOUBLE-QUOTE (US-ASCII
+   decimal 22) character. The DOUBLE-QUOTE (US-ASCII decimal 22)
+   character is used as a delimiter for parameter values that contain
+   restricted characters or URI text. For example:
+
+
+
+
+Dawson &amp; Stenerson          Standards Track                    [Page 17]
+=0C
+RFC 2445                       iCalendar                   November 1998
+
+
+     DESCRIPTION;ALTREP=3D&quot;http://www.wiz.org&quot;:The F</pre></body>=
+</html>
+------=_Part_F8E5F321_C00DC19E.148B2F39C96
+Content-Location: resource://gre-resources/plaintext.css
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/css
+
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  -moz-control-character-visibility: visible;
+}
+
+------=_Part_F8E5F321_C00DC19E.148B2F39C96--
