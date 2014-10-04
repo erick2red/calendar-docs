@@ -31,16 +31,14 @@ Implementation details
   2. Keep labels with headers
 
 * GcalManager internals
-  1. a list of GcalStoreUnit containing:
-     1. Esource, ECalClient,ECalClientView,
-	 2. `#GHashTable<uid, #ECalComponent>` (as *active events* of the view)
-  2. a list of ESourceGroup
+  1. a hash of `GcalManagerUnit` containing:
+     1. Esource as keys
+	 2. a struct with ECalClient,ECalClientView as values
   3. `#icaltimetype *initial_date, *final_date`
   4. Emit signals for:
      1. objects-added   (wrapping ECalClientView)
      2. objects-removed (wrapping ECalClientView)
      3. events-changed (for time range changing ??)
-  5. a GtkListStore with calendar/sources info. (not in use now)
 
 * DaysGrid
   1. API: `gcal_days_grid_mark_hour`: will draw the blue mark of current unit
