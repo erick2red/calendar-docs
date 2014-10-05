@@ -20,3 +20,5 @@ Notes
    - Both, start date and end date are marked with is_date
 
 6. `icaltime_as_timet` doesn't include `icaltimetype` timezone. You have to use `icaltime_as_timet_with_zone`
+
+7. `uuid` across the whole code refers to a string composed by "`source_uid`:`event_uid`"
