@@ -26,3 +26,12 @@ Specifications
   1. It's height is divided in 48 cells representing each
      half-hour of the day
   2. Will have to mark the actual time of day (hour)
+
+* *EventWidget*
+  1. Keeps its icalcomponent copy
+
+* *Manager*
+  1. `GcalEventData` contains:
+     1. a weak `ESource` references
+	 2. a owned (by the widget) `ECalComponent` representing the event
+  2. `:objects-added` signal pass a a list of `GcalEventData` that will finally be passed onto widgets by `GcalWindow`
