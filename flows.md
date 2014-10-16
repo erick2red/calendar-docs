@@ -25,6 +25,11 @@ Flows
   3. retrieve/set new time-range (always)
   4. update NavBar headers
 
+*Update the app date. v2*
+
+* API: `update_view`:
+  3. update NavBar headers
+
 *Create an event*
 
 * First approach
@@ -60,7 +65,4 @@ Flows
 
 * API: `event_activated`
 
-*`#GcalManager:events-added*
-*`#GcalManager:events-removed*
-*`#GcalManager:events-modified*
 *`#GcalManager:events-created*
