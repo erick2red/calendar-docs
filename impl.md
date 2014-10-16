@@ -14,6 +14,15 @@ Implementation details
   8. API: `gcal_view_get_right_header`
   9. API: `gcal_view_mark_current_unit`
   9. API: `gcal_view_clear_marks`
+  10. Implement `ECalDataModelSubscriber`
+  11. Updates its subscribed range on every date change
+  12. Handle events children widgets on its vfuncs and,
+      there's no need of calling `gcal_view_clear` nor anything
+	  like that on showing, if only just queue a redraw on show
+  13. API: `gcal_view_set_manager`: So the view could update its range internally.
+      Defined to keep an internal week reference to the app `GcalManager` instance.
+  14. Keep a property for a date
+  15. Keep a property for a manager.
 
 * Main window requirements:
   1. Keep a list of views, initialized views, not activated views.
@@ -28,18 +37,27 @@ Implementation details
 
 * GcalNavBar requirements:
   1. Send back/forward signals
+  1. Send today signal
   2. Keep labels with headers
 
 * GcalManager internals
   1. a hash of `GcalManagerUnit` containing:
      1. Esource as keys
-	 2. a struct with ECalClient,ECalClientView as values
-  3. `#icaltimetype *initial_date, *final_date`
-  4. Emit signals for:
-     1. objects-added   (wrapping ECalClientView)
-     2. objects-removed (wrapping ECalClientView)
-     3. events-changed (for time range changing ??)
+	 2. a strut containing ECalClient,enabled,color as values
+  2. `#icaltimetype *initial_date, *final_date`
+  3. A `ECalDataModel` instance
+  3. Creation flow:
+    1. Read sources and schedule connecting of each client
+	2. Create `ECalDataModel` in `_init` vfunc
+	3. Delayed: once the client is connected add them to the `e_cal_data_model` instance
 
-* DaysGrid
-  1. API: `gcal_days_grid_mark_hour`: will draw the blue mark of current unit
-  2. `scale_width` internal attribute include left and right padding
+* Edit dialog details
+  1. It receives an `ECalComponent` and use it for rendering values
+     and record changes. If the user changed the summary of an event
+	 the proper flow would be to update the internal `ECalComponent`
+	 using `e_cal_component_set_summary`.
+  2. Use three responses:
+     1. `GCAL_RESPONSE_DELETE_EVENT`: for the action of delete the event
+     2. `GCAL_RESPONSE_SAVE_EVENT`: for saving he changes made to the event
+     3. `GTK_RESPONSE_CANCEL`: for canceling any changes
+  3. Use a GtkBuilder file for loading the ui, as much as possible
