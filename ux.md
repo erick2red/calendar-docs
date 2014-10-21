@@ -2,7 +2,7 @@ Functions available to the user from the initial UI
 ====================================================
 
 * *New Event creation*: for New Event creation there's three ways of doing it:
-  1. Click the [New Event] button on the toolbar (also press <Ctrl>N on the keyboard)
+  1. Click the [New Event] item on the menu-button on the header-bar (also press <Ctrl>N on the keyboard)
   2. Single click on a cell on view.
   3. DND across some cells to mark an time lapse for te event
 * Edit events data: There's just one way of doing it

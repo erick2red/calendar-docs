@@ -32,7 +32,7 @@ Flows
 *Create an event*
 
 * First approach
-  1. call `gcal_window_new_event` (from <Ctrl>N or [New Event] button)
+  1. call `gcal_window_new_event` (from <Ctrl>N or [New Event] menu item)
   2. set `#GcalWindow:new-event-mode` to TRUE
   3. disable toolbar
   4. call `gcal_view_mark_current_unit`
