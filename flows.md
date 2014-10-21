@@ -20,7 +20,6 @@ Flows
 *Update the app date*
 
 * API: `update_view`: update only the active view
-  1. drop every children: API `gcal_view_clear`
   2. queue resize/redraw if visible
   3. retrieve/set new time-range (always)
   4. update NavBar headers

@@ -2,6 +2,7 @@ Implementation details
 =======================
 
 * Views requirements:
+  0. Descend from `GcalSubscriber`
   1. Mark a range of units, or a single one (2nd and 3rd ways of New Event flow)
   2. Signal about an event creation (2nd and 3rd ways of New Event flow)
   3. Handle enable/disable states (visible or not)
@@ -14,15 +15,18 @@ Implementation details
   8. API: `gcal_view_get_right_header`
   9. API: `gcal_view_mark_current_unit`
   9. API: `gcal_view_clear_marks`
-  10. Implement `ECalDataModelSubscriber`
   11. Updates its subscribed range on every date change
-  12. Handle events children widgets on its vfuncs and,
-      there's no need of calling `gcal_view_clear` nor anything
-	  like that on showing, if only just queue a redraw on show
   13. API: `gcal_view_set_manager`: So the view could update its range internally.
       Defined to keep an internal week reference to the app `GcalManager` instance.
   14. Keep a property for a date
   15. Keep a property for a manager.
+
+* `GcalSubscriber` details
+  0. Descend from `GtkContainer`
+  10. Implement `ECalDataModelSubscriber`
+  12. Handle events children widgets on its vfuncs and,
+      there's no need of calling `gcal_view_clear` nor anything
+	  like that on showing, if only just queue a redraw on show
 
 * Main window requirements:
   1. Keep a list of views, initialized views, not activated views.
