@@ -9,9 +9,9 @@ Functions available to the user from the initial UI
   1. Double click on an event widget
 * Search events by its data
   1. By pressing any chars key (and by pressing <Ctrl>F)
+  2. By clicking on the search icon on the header-bar
 * View events layout spatially (differently, by using views)
   1. Change the view using the toolbar buttons.
-  2. Change the view using the appmenu
 * Navigate throught time using a navigation bar
 * Reorder/resize events by dragging it with the mouse
   1. Dragging and resizing event widgets
