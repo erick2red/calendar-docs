@@ -25,3 +25,5 @@ Notes
 
 8. Passing of events data around will be made using `ECalComponent` struct from eds.
    Date/time data will be using `ECalComponentDateTime` struct until we managed to get something better like GDateTime.
+
+9. Date/time show on every view on the application will me local time, if the event has a different timezone set, it will be converted
