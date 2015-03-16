@@ -22,3 +22,6 @@ Notes
 6. `icaltime_as_timet` doesn't include `icaltimetype` timezone. You have to use `icaltime_as_timet_with_zone`
 
 7. `uuid` across the whole code refers to a string composed by "`source_uid`:`event_uid`"
+
+8. Passing of events data around will be made using `ECalComponent` struct from eds.
+   Date/time data will be using `ECalComponentDateTime` struct until we managed to get something better like GDateTime.
