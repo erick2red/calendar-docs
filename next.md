@@ -11,7 +11,7 @@ The Fast TODO list
 	* recurrence
 	* change of DONE button of the dialog for Save when the event is editable
 + [ ] Rethink all-day event area on week-view day-view according to new mockups
-+ [ ] Rewrite month-view painting/allocating to handle overflow of events
++ [x] Rewrite month-view painting/allocating to handle overflow of events
 + [x] Make search-view not a fixed view
 + [ ] Show the search-view once the search has started
 + [ ] Add search-mode to event-widget (to show date and buttons?)
