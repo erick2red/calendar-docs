@@ -27,3 +27,5 @@ Notes
    Date/time data will be using `ECalComponentDateTime` struct until we managed to get something better like GDateTime.
 
 9. Date/time show on every view on the application will me local time, if the event has a different timezone set, it will be converted
+
+10. Date/time in event-widgets will be converted to local timezone upon creation
